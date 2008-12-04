@@ -1,0 +1,3 @@
+# -*- mode: python -*-
+
+from twisted.application import service
