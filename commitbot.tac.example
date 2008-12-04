@@ -1,3 +1,17 @@
 # -*- mode: python -*-
 
 from twisted.application import service
+from twisted.words.protocols.jabber import jid
+from wokkel.client import XMPPClient
+
+from commitbot import CommitBot
+
+application = service.Application('commitbot')
+
+client = XMPPClient(jid.internJID('user@host'), 'password')
+client.logTraffic = False
+
+bot = CommitBot('room@chat.example.com', 'commits')
+bot.setHandlerParent(client)
+
+client.setServiceParent(application)
