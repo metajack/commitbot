@@ -1,2 +1,3 @@
 *.tac
 *.pyc
+twistd.pid
