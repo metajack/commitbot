@@ -52,7 +52,6 @@ class CommitBot(XMPPHandler):
                                                 ltxt))
         msg = domish.Element((None, 'message'))
         msg['to'] = self.room
-        msg['from'] = self.room + '/' + self.nick
         msg['type'] = 'groupchat'
         msg.addElement('body', content=''.join(text))
         wrap = msg.addElement((NS_XHTML_IM, 'html'))
