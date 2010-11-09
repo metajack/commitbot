@@ -13,7 +13,8 @@ application = service.Application('commitbot')
 client = XMPPClient(jid.internJID('user@example.com'), 'password')
 client.logTraffic = True
 
-bot = CommitBot('room@chat.example.com', 'gitbot')
+#In the next line, replace None with the password, for a protected room
+bot = CommitBot('room@chat.example.com', 'gitbot', None)
 bot.setHandlerParent(client)
 
 client.setServiceParent(application)

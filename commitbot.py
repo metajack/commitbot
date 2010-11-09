@@ -13,11 +13,12 @@ NS_XHTML_W3C = 'http://www.w3.org/1999/xhtml'
 
 class CommitBot(XMPPHandler):
 
-    def __init__(self, room, nick):
+    def __init__(self, room, nick, password=None):
         XMPPHandler.__init__(self)
 
         self.room = room
         self.nick = nick
+        self.password = password
 
     def connectionMade(self):
         self.send(AvailablePresence())
@@ -27,7 +28,9 @@ class CommitBot(XMPPHandler):
         # join room
         pres = Presence()
         pres['to'] = self.room + '/' + self.nick
-        pres.addElement((NS_MUC, 'x'))
+        x = pres.addElement((NS_MUC, 'x'))
+        if not self.password is None:
+            x.addElement('password', content = self.password)
         self.send(pres)
 
     def notify(self, data):
