@@ -34,6 +34,6 @@ launch it with `twistd`.
 
     twistd -y commitbot.tac
 
-Finally, add http://your-server-IP:8888 (or whichever port you set in the
+Finally, add `http://your-server-IP:8888` (or whichever port you set in the
 commitbot.tac) as a WebHook to your GitHub-Repository. Congratulations,
 you are all set up now.
