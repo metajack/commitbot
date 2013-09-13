@@ -28,8 +28,12 @@ in addition to the normal Twisted package.
 
 ## Usage
 
-Copy `commitbot.tac.example` to `commitbot.tac` changing the JID,
-password, room name, and room nickname to something appropriate.  Then
+Copy `commitbot.tac.example` to `commitbot.tac` changing the jabber_id,
+password, room, and bot_name to something appropriate.  Then
 launch it with `twistd`.
 
     twistd -y commitbot.tac
+
+Finally, add `http://your-server-IP:8888` (or whichever port you set in the
+commitbot.tac) as a WebHook to your GitHub-Repository. Congratulations,
+you are all set up now.

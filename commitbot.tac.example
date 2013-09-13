@@ -7,18 +7,30 @@ from wokkel.client import XMPPClient
 
 from commitbot import CommitBot, WebHook
 
+# Configuration
+# Change these values
+jabber_id = 'user@example.com'		# Jabber-ID
+password  = 'password'				# Password
+room      = 'room@chat.example.com'	# Room (including server)
+bot_name  = 'gitbot'				# Display name for bot
+room_pass = None					# Set this to the room password, if any, or leave it as None
+
+# You may optionally change the TCP port the server will be listening on
+serv_port = 8888					# Port the webserver should run on
+
+# That's it, you're all set.
+
 application = service.Application('commitbot')
 
 
-client = XMPPClient(jid.internJID('user@example.com'), 'password')
+client = XMPPClient(jid.internJID(jabber_id), password)
 client.logTraffic = True
 
-#In the next line, replace None with the password, for a protected room
-bot = CommitBot('room@chat.example.com', 'gitbot', None)
+bot = CommitBot(room, bot_name, None)
 bot.setHandlerParent(client)
 
 client.setServiceParent(application)
 
 site = server.Site(WebHook(bot))
-server = internet.TCPServer(8888, site)
+server = internet.TCPServer(serv_port, site)
 server.setServiceParent(application)
